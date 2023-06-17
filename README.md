@@ -1,6 +1,9 @@
 # EthDapp
+## Version
+Angular：16.0.5
+NodeJS：18.16.0
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
 
 ## Development server
 
