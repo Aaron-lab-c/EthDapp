@@ -1,11 +1,9 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ArticleModel, commentModel } from 'src/app/model/ArticleModel';
+import { ContractProviderService } from 'src/app/services/ContractProvider/contract-provider.service';
 import { ProviderService } from 'src/app/services/provider/provider.service';
 import Web3 from 'web3';
-//合約abi
-const abi_article=[ { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "article_index", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function", "constant": true }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "articles", "outputs": [ { "internalType": "address", "name": "author", "type": "address" }, { "internalType": "string", "name": "title", "type": "string" }, { "internalType": "string", "name": "content", "type": "string" }, { "internalType": "uint256", "name": "commentCount", "type": "uint256" } ], "stateMutability": "view", "type": "function", "constant": true }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "comments", "outputs": [ { "internalType": "address", "name": "commenter", "type": "address" }, { "internalType": "string", "name": "content", "type": "string" } ], "stateMutability": "view", "type": "function", "constant": true }, { "inputs": [], "name": "lastest_article", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function", "constant": true }, { "inputs": [ { "internalType": "string", "name": "_title", "type": "string" }, { "internalType": "string", "name": "_content", "type": "string" } ], "name": "publishArticle", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "_articleId", "type": "uint256" }, { "internalType": "string", "name": "_content", "type": "string" } ], "name": "postComment", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "_articleId", "type": "uint256" } ], "name": "getArticle", "outputs": [ { "components": [ { "internalType": "address", "name": "author", "type": "address" }, { "internalType": "string", "name": "title", "type": "string" }, { "internalType": "string", "name": "content", "type": "string" }, { "internalType": "uint256", "name": "commentCount", "type": "uint256" } ], "internalType": "struct Articles.Article", "name": "", "type": "tuple" } ], "stateMutability": "view", "type": "function", "constant": true }, { "inputs": [], "name": "getArticle_index", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function", "constant": true }, { "inputs": [ { "internalType": "uint256", "name": "_articleId", "type": "uint256" }, { "internalType": "uint256", "name": "_commentId", "type": "uint256" } ], "name": "getComment", "outputs": [ { "components": [ { "internalType": "address", "name": "commenter", "type": "address" }, { "internalType": "string", "name": "content", "type": "string" } ], "internalType": "struct Articles.Comment", "name": "", "type": "tuple" } ], "stateMutability": "view", "type": "function", "constant": true }, { "inputs": [ { "internalType": "uint256", "name": "_articleId", "type": "uint256" } ], "name": "getAllComment", "outputs": [ { "components": [ { "internalType": "address", "name": "commenter", "type": "address" }, { "internalType": "string", "name": "content", "type": "string" } ], "internalType": "struct Articles.Comment[]", "name": "", "type": "tuple[]" } ], "stateMutability": "view", "type": "function", "constant": true } ];
-//權限管理合約地址
-const address_article= '0x18cbD8371D8B12E19964e515fbbACF2e08D0728e';
+
 
 @Component({
   selector: 'app-article',
@@ -13,6 +11,9 @@ const address_article= '0x18cbD8371D8B12E19964e515fbbACF2e08D0728e';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
+  public abi_article = this.contractProvider.abi_article_provider;
+  public address_article = this.contractProvider.address_article_provider;
+
   //用來裝合約instance
   public contract_article!:any;
 
@@ -23,10 +24,10 @@ export class ArticleComponent implements OnInit {
 
   public articlemodel!:ArticleModel;
   public result!:boolean;
-  constructor(private provider : ProviderService,private cdr: ChangeDetectorRef){
+  constructor(private provider : ProviderService,private cdr: ChangeDetectorRef,private contractProvider:ContractProviderService){
 
       this.contract_article = new this.provider.web3.eth.Contract(
-        abi_article,address_article,{
+        this.abi_article,this.address_article,{
           from: this.provider.defaultAccount,
           gasPrice: '20000000000'
         });

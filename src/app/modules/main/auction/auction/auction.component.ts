@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProviderService } from 'src/app/services/provider/provider.service';
 import { AuctionModel } from 'src/app/model/AuctionModel';
 import { Observable } from 'rxjs';
+import { ContractProviderService } from 'src/app/services/ContractProvider/contract-provider.service';
 
 @Component({
   selector: 'app-auction',
@@ -11,8 +12,8 @@ import { Observable } from 'rxjs';
 export class AuctionComponent implements OnInit {
   auctions!: AuctionModel[];
   selectedauction?: AuctionModel;
-  public abi_auction = this.provider.abi_auction_provider;
-  public address_auction = this.provider.address_auction_provider;
+  public abi_auction = this.contractProvider.abi_auction_provider;
+  public address_auction = this.contractProvider.address_auction_provider;
 
   getwww(): void{
     console.log(this.auctions);
@@ -59,7 +60,7 @@ export class AuctionComponent implements OnInit {
   public contract_auction!:any;
   public  auctionmodel!:AuctionModel;
   public result?:boolean;
-  constructor(private provider : ProviderService){
+  constructor(private provider : ProviderService,private contractProvider:ContractProviderService){
     this.auctionmodel = new AuctionModel("","",0,"",0);
     //產生拍賣合約的instance
     this.contract_auction = new this.provider.web3.eth.Contract(

@@ -7,7 +7,7 @@ import { TransactionComponent } from './modules/main/transaction/transaction.com
 @NgModule({
   declarations: [
     AppComponent
-    ],
+      ],
   imports: [
     BrowserModule,
     AppRoutingModule

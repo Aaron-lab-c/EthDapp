@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContractProviderService } from 'src/app/services/ContractProvider/contract-provider.service';
 import { ProviderService } from 'src/app/services/provider/provider.service';
 
 @Component({
@@ -19,13 +20,13 @@ export class ProfileSetComponent implements OnInit{
   public result2!:boolean;
   public result3!:boolean;
 
-  public abi_profile = this.provider.abi_profile_provider;
-  public address_profile = this.provider.address_profile_provider;
+  public abi_profile = this.contractProvider.abi_profile_provider;
+  public address_profile = this.contractProvider.address_profile_provider;
 
   ngOnInit(): void {
   }
 
-  constructor(private provider:ProviderService){
+  constructor(private provider:ProviderService,private contractProvider:ContractProviderService){
       this.contract_profile = new this.provider.web3.eth.Contract(
       this.abi_profile,this.address_profile,{
         from: this.provider.defaultAccount,
