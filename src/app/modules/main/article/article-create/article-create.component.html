@@ -1,0 +1,27 @@
+<p>article-create works!</p>
+<app-article-navtab></app-article-navtab>
+<div class="container p-3 mb-2 bg-light text-dark border border-info">
+    發表文章
+    <div class="Column">
+            <form (ngSubmit)="PostArticle()">
+                <div>
+                    標題：<input type="text" placeholder="title" 
+                            name="title" [(ngModel)]="this.articlemodel.title"/>
+                </div>
+                <div>
+                    內容：<textarea placeholder="content" 
+                        name="content" [(ngModel)]="this.articlemodel.content" ></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-outline-success">submit</button>
+                </div>
+            </form>
+            <br>
+            <div *ngIf="this.result==true" class="alert alert-primary" role="alert">
+                Success!
+            </div>
+            <div *ngIf="this.result==false" class="alert alert-primary" role="alert">
+                Fail!
+            </div>
+    </div>
+</div>

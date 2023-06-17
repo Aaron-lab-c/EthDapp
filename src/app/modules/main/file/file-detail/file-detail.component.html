@@ -1,0 +1,47 @@
+<table class="table">
+
+    <thead style="display:none">
+      <tr>
+        <th scope="col" style="width: 10%;">#</th>
+        <th scope="col" style="width: 20%;">name</th>
+        <th scope="col" style="width: 20%;">type</th>
+        <th scope="col" style="width: 20%;">size</th>
+        <th scope="col" style="width: 10%;">path</th>
+        <th scope="col" style="width: 20%;">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row" style="width: 10%;">{{this.num+1}}</th>
+      <td style="width: 20%;">{{this.filedetail.name}}</td>
+      <td style="width: 20%;">{{this.filedetail.type}}</td>
+      <td style="width: 20%;">{{this.filedetail.size}}</td>
+      <td style="width: 10%;"><p style="overflow: auto;max-width: 100px;">/ipfs/{{this.filedetail.path}}</p></td>
+      <td style="width: 20%;">
+        <button type="button" (click)=download()>下載</button>
+        <a [attr.href]="'http://'+'localhost:8080/ipfs/' + this.filedetail.path">瀏覽</a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#data' + this.num" data-bs-whatever="@mdo" (click)=viewDetail()>瀏覽</button>
+
+    </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<div class="modal fade" [attr.id]="'data' + this.num" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl .modal-dialog-centered ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">瀏覽</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <iframe [src]="safeurl" width="100%" height="450"></iframe>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>

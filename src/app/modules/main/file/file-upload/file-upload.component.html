@@ -1,0 +1,19 @@
+<p>file-upload works!</p>
+<app-file-navtab></app-file-navtab>
+<input type="file" (change)="uploadFile2($event)">
+<button type="button" class="btn btn-primary" (click)="uploadFileMetadata()">上傳</button>   
+
+
+<div class="position-absolute top-50 start-50 translate-middle">
+    <a href="https://github.com/ipfs/js-ipfs/tree/master/packages/ipfs-http-client#running-the-daemon-with-the-right-port">
+        <img src="./assets/img/IPFS.gif" class="rounded" alt="...">
+    </a>
+</div>
+
+<br>
+<div *ngIf="this.result==true" class="alert alert-primary" role="alert">
+    Success!
+</div>
+<div *ngIf="this.result==false" class="alert alert-primary" role="alert">
+    Fail!
+</div>

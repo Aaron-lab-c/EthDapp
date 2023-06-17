@@ -1,0 +1,28 @@
+<p>transaction works!</p>
+
+<div class="container p-3 mb-2 bg-light text-dark border border-info">
+    轉出
+    <div class="Column">
+            <form (ngSubmit)="transaction()">
+                <div>
+                    轉出地址：<input type="text" placeholder="to address" 
+                            name="to" [(ngModel)]="this.transactionModel.to"/>
+                </div>
+                <div>
+                    ETH數量：<input type="number" placeholder="value" 
+                        name="value" [(ngModel)]="this.transactionModel.value" />
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-outline-success">submit</button>
+                </div>
+            </form>
+            <br>
+            <div *ngIf="this.result==true" class="alert alert-primary" role="alert">
+                Success!
+            </div>
+            <div *ngIf="this.result==false" class="alert alert-primary" role="alert">
+                Fail!
+            </div>
+    </div>
+    
+  </div>

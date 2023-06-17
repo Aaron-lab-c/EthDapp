@@ -1,0 +1,13 @@
+
+    <form (ngSubmit)="PostComment()">
+            <input type="text" placeholder="comment" 
+                    name="comment" [(ngModel)]="this.commentmodel.content"/>
+        <button type="submit" class="btn btn-outline-success">submit</button>
+    </form>
+    <br>
+    <div *ngIf="this.result==true" class="alert alert-primary" role="alert">
+        Success!
+    </div>
+    <div *ngIf="this.result==false" class="alert alert-primary" role="alert">
+        Fail!
+    </div>

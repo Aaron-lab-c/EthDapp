@@ -1,0 +1,37 @@
+<p>profile-set works!</p>
+<app-profile-navtab></app-profile-navtab>
+<div class="Column">
+    <form (ngSubmit)="setUsername()">
+        <div>
+            username：<input type="text" placeholder="{{this.P_username}}" 
+                    name="username" [(ngModel)]="this.username"/>
+                    <button type="submit" class="btn btn-outline-success">修改</button>
+        </div>
+    </form>
+    <br>
+    <div *ngIf="this.result1==true" class="alert alert-primary" role="alert">
+        Success!
+    </div>
+    <div *ngIf="this.result1==false" class="alert alert-primary" role="alert">
+        Fail!
+    </div>
+</div>
+
+<div class="Column">
+    <form (ngSubmit)="setintroduce()">
+        <div>
+            introduce:<input type="text" placeholder="{{this.P_introduce}}" 
+                    name="introduce" [(ngModel)]="this.introduce"/>
+                    <button type="submit" class="btn btn-outline-success">修改</button>
+        </div>
+    </form>
+    <br>
+    <div *ngIf="this.result2==true" class="alert alert-primary" role="alert">
+        Success!
+    </div>
+    <div *ngIf="this.result2==false" class="alert alert-primary" role="alert">
+        Fail!
+    </div>
+</div>
+<button *ngIf="this.P_useraddress=='0x0000000000000000000000000000000000000000'" type="button" class="btn btn-primary" (click)="setuseraddress()">授權錢包地址給個人資料</button>   
+

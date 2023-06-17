@@ -1,0 +1,32 @@
+<p>auction-create works!</p>
+<app-auction-navtab></app-auction-navtab>
+
+<div class="container p-3 mb-2 bg-light text-dark border border-info">
+    商品
+    <div class="Column">
+            <form (ngSubmit)="PostProduct()">
+                <div>
+                    商品名稱：<input type="text" placeholder="product_name" 
+                            name="product_name" [(ngModel)]="this.auctionmodel.product_name"/>
+                </div>
+                <div>
+                    介紹：<textarea placeholder="product_introduce" 
+                        name="product_introduce" [(ngModel)]="this.auctionmodel.product_introduce" ></textarea>
+                </div>
+                <div>
+                    價格(wei)：<input type="number" placeholder="product_price" 
+                            name="product_price" [(ngModel)]="this.auctionmodel.product_price"/>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-outline-success">submit</button>
+                </div>
+            </form>
+            <br>
+            <div *ngIf="this.result==true" class="alert alert-primary" role="alert">
+                Success!
+            </div>
+            <div *ngIf="this.result==false" class="alert alert-primary" role="alert">
+                Fail!
+            </div>
+    </div>
+</div>

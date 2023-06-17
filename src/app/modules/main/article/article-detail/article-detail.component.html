@@ -1,0 +1,11 @@
+
+    <p>標題：{{this.articlemodel.title}}</p>
+    <p>內容：{{this.articlemodel.content}}</p>
+    <p>作者：{{this.articlemodel.author}}</p>
+    留言：
+    <ul class="list-group ">
+        <li *ngFor="let comment of articlemodel.comments" class="list-group-item">
+            <label>內容：{{ comment.content }} </label><br>
+            <label>發文者：{{ comment.commenter }} </label>
+        </li>
+      </ul>

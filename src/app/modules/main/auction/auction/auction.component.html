@@ -1,0 +1,18 @@
+<p>auction works!</p>
+<app-auction-navtab></app-auction-navtab>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 10%;">#</th>
+      <th scope="col" style="width: 20%;">product_name</th>
+      <th scope="col" style="width: 20%;">product_introduce</th>
+      <th scope="col" style="width: 20%;">product_price</th>
+      <th scope="col" style="width: 10%;">owner</th>
+      <th scope="col" style="width: 20%;">操作</th>
+    </tr>
+  </thead>
+</table>
+
+<ng-container *ngFor="let item of auctions;let i = index">
+  <app-auction-detail [num]=i [auctionmodel]="item"></app-auction-detail>
+</ng-container>

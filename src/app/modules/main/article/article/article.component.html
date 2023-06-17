@@ -1,0 +1,9 @@
+<p>article works!</p>
+<app-article-navtab></app-article-navtab>
+
+<ng-container *ngFor="let item of articles;let i = index">
+        <div class="border" style="width:50%">
+            <app-article-detail [num]=i [articlemodel]="item"></app-article-detail>
+            <app-article-commentcreate [ArticleId]=item.ArticleId></app-article-commentcreate>
+        </div>
+</ng-container>

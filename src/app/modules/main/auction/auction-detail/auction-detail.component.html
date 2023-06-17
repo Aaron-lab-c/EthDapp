@@ -1,0 +1,51 @@
+<table class="table">
+      <thead style="display:none">
+        <tr>
+          <th scope="col" style="width: 10%;">#</th>
+          <th scope="col" style="width: 20%;">product_name</th>
+          <th scope="col" style="width: 20%;">product_introduce</th>
+          <th scope="col" style="width: 20%;">product_price</th>
+          <th scope="col" style="width: 10%;">owner</th>
+          <th scope="col" style="width: 20%;">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row" style="width: 10%;">{{this.num+1}}</th>
+        <td style="width: 20%;">{{this.auctionmodel.product_name}}</td>
+        <td style="width: 20%;">{{this.auctionmodel.product_introduce}}</td>
+        <td style="width: 20%;">{{this.auctionmodel.product_price}}</td>
+        <td style="width: 10%;"><p style="overflow: auto;max-width: 100px;">{{this.auctionmodel.owner}}</p></td>
+        <td style="width: 20%;">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#data' + this.auctionmodel.index" data-bs-whatever="@mdo">購買</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<div class="modal fade" [attr.id]="'data' + this.auctionmodel.index" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">商品確認</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">名稱：{{this.auctionmodel.product_name}}</label>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">介紹：{{this.auctionmodel.product_introduce}}</label>
+            </div>
+            <div class="mb-3">
+                <label for="message-text" class="col-form-label">價格：{{this.auctionmodel.product_price}}</label>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="Buy()">購買</button>
+        </div>
+      </div>
+    </div>
+</div>
